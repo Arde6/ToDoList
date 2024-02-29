@@ -1,40 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace YourNamespace
 {
     public partial class MainWindow : Window
     {
-        private ToDoList toDoList;
+        public ObservableCollection<string> Tasks { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            toDoList = new ToDoList();
+            Tasks = new ObservableCollection<string>();
+            taskListBox.ItemsSource = Tasks;
         }
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             string task = taskTextBox.Text;
-            toDoList.AddTask(task);
-            taskListBox.ItemsSource = toDoList.GetTasks();
+            Tasks.Add(task);
             taskTextBox.Clear();
         }
     }
 }
-

@@ -1,11 +1,34 @@
 ﻿<Window x:Class="YourNamespace.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YourNamespace"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
         Title="ToDoList App" Height="350" Width="525">
+
     <Grid>
-        <!-- Your UI elements go here -->
-        <ListBox Name="taskListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="200"/>
-        <TextBox Name="taskTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="220,10,0,0"/>
-        <Button Content="Add Task" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="350,10,0,0" Click="AddTask_Click"/>
+        <!-- Header -->
+        <materialDesign:Card Margin="8" Padding="16">
+            <materialDesign:Card.Background>
+                <SolidColorBrush Color="{DynamicResource MaterialDesignBackground}" />
+            </materialDesign:Card.Background>
+            <TextBlock Text="ToDoList App" Style="{DynamicResource MaterialDesignTitleTextBlock}" FontSize="24" Margin="0,-26,0,-18"/>
+        </materialDesign:Card>
+
+        <!-- Content -->
+        <materialDesign:Card Margin="8,29,8,-13" Padding="16">
+            <materialDesign:Card.Background>
+                <SolidColorBrush Color="{DynamicResource MaterialDesignPaper}" />
+            </materialDesign:Card.Background>
+
+            <StackPanel>
+                <TextBox x:Name="taskTextBox" materialDesign:HintAssist.Hint="Add a task"/>
+                <Button Content="Add Task" HorizontalAlignment="Left" Width="75" Padding="8" Click="AddTask_Click"/>
+                <ListBox x:Name="taskListBox" Margin="0,16,0,0" ItemsSource="{Binding Tasks}" SelectionMode="Single"/>
+            </StackPanel>
+        </materialDesign:Card>
+
     </Grid>
 </Window>
